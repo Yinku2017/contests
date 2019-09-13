@@ -1,0 +1,37 @@
+    #include<bits/stdc++.h>
+    using namespace std;
+    #define pii pair<int,int>
+    #define mp make_pair
+     
+    const int maxn=1e6+5;
+    int a[maxn];
+    map<int,int>v;
+    int ri[maxn];
+    int main()
+    {
+        int n,m;
+        while(~scanf("%d%d",&n,&m)&&n&&m)
+        {
+            v.clear();
+            for(int i=1;i<=n;++i)
+                scanf("%d",a+i);
+            int r=1;
+            for(int i=1;i<=n;++i)
+            {
+                while(!v[a[r]]&&r<=n)
+                    v[a[r]]=1,++r;
+                ri[i]=r-1;
+                v[a[i]]=0;
+            }
+            int L,R;
+            while(m--)
+            {
+                scanf("%d%d",&L,&R);
+                if(ri[L]>=R)
+                    puts("OK");
+                else
+                    printf("%d\n",a[ri[L]+1]);
+            }
+            puts("");
+        }
+    }
